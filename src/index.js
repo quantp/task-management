@@ -2,13 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import './App.css';
-import App from './App';
+import AppContainer from './containers/AppContainer'
 import * as serviceWorker from './serviceWorker';
+//redux
 import {Provider} from 'react-redux';
-import store from './store';
+import {createStore} from 'redux';
+import allReducers from './reducers'
+// import store from './store';
+
+let store = createStore(allReducers);
+
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <AppContainer />
     </Provider>
     
     , 

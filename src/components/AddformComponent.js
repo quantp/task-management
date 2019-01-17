@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 
 class Addform extends Component {
   onChangeHandler = (ev) => {
@@ -22,23 +21,10 @@ class Addform extends Component {
           <label htmlFor="note-content">Note Content</label>
           <textarea onChange={this.onChangeHandler} className="form-control" name="content" id="note-content" rows={3} defaultValue={""} />
         </div>
-        <button type="submit" className="btn btn-primary btn-block"onClick={() => {this.props.addUser(this.state)}}>Save</button>
+        <button type="submit" className="btn btn-primary btn-block"onClick={() => {this.props.onClickAdd(this.state)}}>Save</button>
         </div>
     )
   }
 }
-const mapStateToProps = (state, ownProps) => {
-  return {
-    message: state.testMessage
-  }
-}
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    addUser: (noteItems) => {
-      dispatch({type: 'ADD', items: noteItems});
-    }
-  }
-}
-// this.props.dispatch1
-export default connect(mapStateToProps, mapDispatchToProps)(Addform);
+export default Addform;

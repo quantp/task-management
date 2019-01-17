@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 class Nav extends Component {
   render() {
     return (
@@ -12,7 +11,7 @@ class Nav extends Component {
               <a className="nav-link" href="#2">Home <span className="sr-only">(current)</span></a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#3" onClick={this.props.showAddForm}>Add New Note</a>
+              <a className="nav-link" href="#3" onClick={this.props.onClickShow}>Add New Note</a>
             </li>
           </ul>
         </div>
@@ -20,15 +19,5 @@ class Nav extends Component {
     )
   }
 }
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    showAddForm: () => {
-      dispatch({type: 'SHOW_ADD_FORM'})
-    }
-  }
-}
-const mapStateToProps = (state, ownProps) => {
-  return {
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Nav)
+
+export default Nav

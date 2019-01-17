@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
 class NoteItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ediItemKey: '',
-      editData: {}
-    }
-  }
-  deleteNote = (key) => {    
+  deleteNote = () => {    
     const canDel = window.confirm('Are you sure?');
     if(canDel) {
       this.props.deleteNote(this.props.id);
@@ -27,7 +19,7 @@ class NoteItem extends Component {
               <div className="btn-group justify-align-right" role="group" aria-label=""  style={{float: 'right'}}>
 
                <div className="btn-group">
-                <button type="button" className="btn btn-primary" onClick={() => {this.props.changeState(this.props.id, this.props.title, this.props.content)}}>Edit</button>
+                <button type="button" className="btn btn-primary" onClick={() => {this.props.showEditForm(this.props.id, this.props.title, this.props.content)}}>Edit</button>
                 <button type="button" className="btn btn-danger" onClick={this.deleteNote}>Delete</button>
               </div>
 
@@ -43,21 +35,4 @@ class NoteItem extends Component {
     )
   }
 }
-const mapStateToProps = (state, ownProps) => {
-  return {
-    isEdit: state.prop,
-    editNoteKey: '',
-    editNoteData: {}
-  }
-}
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    changeState: (key, title, content) => {
-      dispatch({type:'SHOW_EDIT_FORM', editKey: key, editTitle: title, editContent:content});
-    },
-    deleteNote:  (key) => {
-      dispatch({type:'DELETE', itemKey: key});
-    }
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps )(NoteItem) 
+export default NoteItem

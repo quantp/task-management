@@ -1,11 +1,5 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux';
-class EditForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
-  
+class EditForm extends Component {  
   onChangeHandler = (e) => {
     const name = e.target.name;
     const val = e.target.value;
@@ -26,25 +20,10 @@ class EditForm extends Component {
           <label htmlFor="note-content">Note Content</label>
           <textarea onChange={this.onChangeHandler} className="form-control" name="content" id="note-content" rows={3} defaultValue={this.props.content} />
         </div>
-        <button type="submit" className="btn btn-primary btn-block"onClick={() => {this.props.saveUser(this.state.title, this.state.content)}}>Save</button>
+        <button type="submit" className="btn btn-primary btn-block"onClick={() => {this.props.updateNote(this.props.id,this.state.title || this.props.title, this.state.content || this.props.content)}}>Save</button>
         </div>
     )
   }
 }
-const mapStateToProps = (state, ownProps) => {
-  return {
-    title: state.editTitle,
-    content: state.editContent
-  }
-}
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    saveUser: (title, content) => {
-      dispatch({type: 'SAVE_USER', pushData: {title: title, content: content}});
-    },
-    addUser: (noteItems) => {
-      dispatch({type: 'ADD', items: noteItems});
-    }
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(EditForm);
+
+export default EditForm

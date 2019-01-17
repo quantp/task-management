@@ -1,0 +1,6 @@
+export const SHOW_ADD_FORM = 'SHOW_ADD_FORM'
+export const ADD_NEW_NOTE = 'ADD_NEW_NOTE'
+export const SHOW_EDIT_FORM = 'SHOW_EDIT_FORM'
+export const UPDATE_NOTE = 'UPDATE_NOTE'
+export const DELETE_NOTE = 'DELETE_NOTE'
+export const FETCH_NOTE = 'FETCH_NOTE'

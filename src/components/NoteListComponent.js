@@ -1,28 +1,27 @@
 import React, { Component } from 'react'
-import NoteItem from './noteitems';
-import firebaseData from './firebase';
-class Accordions extends Component {
+import NoteItem from '../containers/NoteItemContainer';
+import firebase from '../api/firebase'
+class Notelist extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: []
     };
-    this.getData = this.getData.bind(this);
   }
 
-  componentWillMount (){
+  componentWillMount = () => {
     var that = this;
-    firebaseData.on('value', function(notes) {      
-      var temp = [];
+    firebase.on('value', function(notes) {      
+      let noteListData = [];
       notes.forEach(element => {
         const key = element.key;
-        temp.push({
+        noteListData.push({
           key: key,
           title: element.val().title,
           content:  element.val().content
         })
       });
-      that.setState({data: temp});
+      that.setState({data: noteListData})
     });
   }
   
@@ -44,4 +43,4 @@ class Accordions extends Component {
     )
   }
 }
-export default Accordions;
+export default Notelist;
